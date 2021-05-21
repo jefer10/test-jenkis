@@ -9,5 +9,4 @@ public class PruebaJenkisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PruebaJenkisApplication.class, args);
 	}
-
 }
