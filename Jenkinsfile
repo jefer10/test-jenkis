@@ -42,29 +42,29 @@ pipeline {
     }
 
     stage('Integration Tests') {
-    		  		steps {
-    		  	    echo "------------>Unit Tests<------------"
-    				sh 'gradlew --stacktrace test'
-    				junit '**/build/test-results/test/*.xml'
-    				step([$class: 'JacocoPublisher'])
-    		  		}
+        steps {
+               echo "------------>Unit Tests<------------"
+               sh 'gradle test jacocoTestCoverageVerification'
+               sh 'gradle test jacocoTestReport'
+
+               // sh 'gradlew --stacktrace test'
+                //junit '**/build/test-results/test/*.xml'
+                //step([$class: 'JacocoPublisher'])
+            }
     }
 
     stage('Static Code Analysis') {
       steps{
         echo '------------>Análisis de código estático<------------'
-        sh 'gradle test jacocoTestCoverageVerification'
-        sh 'gradle test jacocoTestReport'
-
+            withSonarQubeEnv('Sonar') {
+                            	sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+                                }
       }
     }
 
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        withSonarQubeEnv('Sonar') {
-                	sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-                    }
         sh 'gradle --b ./build.gradle build -x test'
       }
     }
