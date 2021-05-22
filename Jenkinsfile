@@ -70,7 +70,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh 'gradle --d --stacktrace ./build.gradle build -x test'
+        sh 'gradlew --d --stacktrace ./build.gradle build -x test'
       }
     }
   }
