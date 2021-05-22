@@ -53,8 +53,8 @@ pipeline {
     stage('Static Code Analysis') {
       steps{
         echo '------------>Análisis de código estático<------------'
-        sh 'gradlew test jacocoTestCoverageVerification'
-        sh 'gradlew test jacocoTestReport'
+        sh 'gradle test jacocoTestCoverageVerification'
+        sh 'gradle test jacocoTestReport'
 
       }
     }
