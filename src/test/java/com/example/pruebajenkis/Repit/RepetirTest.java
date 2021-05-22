@@ -24,6 +24,7 @@ class RepetirTest {
     @Test//cuando lo esparado es una exepcion
     public void repeat_string_negativa(){
         Repetir.repeat("hola",-1);
+
     }
 
 }
