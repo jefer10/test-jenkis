@@ -44,12 +44,12 @@ pipeline {
     stage('Integration Tests') {
         steps {
                echo "------------>Unit Tests<------------"
-               sh 'gradle test jacocoTestCoverageVerification'
-               sh 'gradle test jacocoTestReport'
+               //sh 'gradle test jacocoTestCoverageVerification'
+               //sh 'gradle test jacocoTestReport'
 
-               // sh 'gradlew --stacktrace test'
-                //junit '**/build/test-results/test/*.xml'
-                //step([$class: 'JacocoPublisher'])
+                sh 'gradlew --stacktrace test'
+                junit '**/build/test-results/test/*.xml'
+                step([$class: 'JacocoPublisher'])
             }
     }
 
