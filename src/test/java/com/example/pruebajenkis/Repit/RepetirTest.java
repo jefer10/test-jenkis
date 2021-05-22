@@ -1,13 +1,18 @@
 package com.example.pruebajenkis.Repit;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import org.junit.Assert;
+//import org.junit.Test;
+
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class RepetirTest {
-
     private MockMvc mvc;
 
 
@@ -23,8 +28,9 @@ class RepetirTest {
 
     @Test//cuando lo esparado es una exepcion
     public void repeat_string_negativa(){
-        Repetir.repeat("hola",-1);
-
+        Assert.assertThrows(IllegalArgumentException.class,()->{
+            Repetir.repeat("hola",-1);
+        });
     }
 
 }
