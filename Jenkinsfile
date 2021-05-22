@@ -44,7 +44,7 @@ pipeline {
     stage('Integration Tests') {
     		  		steps {
     		  	    echo "------------>Unit Tests<------------"
-    				sh 'gradle --stacktrace test'
+    				sh 'gradlew --stacktrace test'
     				junit '**/build/test-results/test/*.xml'
     				step([$class: 'JacocoPublisher'])
     		  		}
