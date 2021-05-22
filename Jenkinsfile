@@ -29,7 +29,7 @@ pipeline {
         		  			userRemoteConfigs: [[credentialsId:'GitHub_jefer10',
         		  			url:'https://github.com/jefer10/test-jenkis.git']]])
 
-         sh 'gradlew clean'
+         sh 'gradle clean'
       }
     }
 
