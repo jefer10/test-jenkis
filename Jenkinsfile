@@ -21,8 +21,15 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
-        checkout scm
-        sh 'gradle clean'
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+        		  			doGenerateSubmoduleConfigurations: false,
+        		  			extensions: [],
+        		  			gitTool:'Default',
+        		  			submoduleCfg: [],
+        		  			userRemoteConfigs: [[credentialsId:'GitHub_jefer10',
+        		  			url:'https://github.com/jefer10/test-jenkis.git']]])
+
+         sh 'gradlew clean'
       }
     }
 
